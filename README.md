@@ -22,3 +22,11 @@ Animate the days when rolled over.
 Animate the modal when opened.
 Automatically open the current day and show the modal in a fancy animation.
 Make snow!
+
+# Quick Start
+
+- Make sure you have installed Node in your computer.
+- Open terminal in root folder
+- Run `npm install`
+- Run `npm start`
+
