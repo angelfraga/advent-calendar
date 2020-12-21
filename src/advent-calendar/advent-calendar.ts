@@ -1,4 +1,4 @@
-import { AdventCalendarTile } from "./advent-calendar-tile";
+import { AdventCalendarTile, ADVENT_CALENDAR_TILE_TAG_NAME } from './advent-calendar-tile';
 import { AdventCalendarConfig } from "./models/advent-calendar-config";
 
 
@@ -25,15 +25,19 @@ export class AdventCalendar extends HTMLElement {
     }
 
     render(config: AdventCalendarConfig) {
-        const tileTemplates = Array.from(new Array(config?.maxDays)).map((_, i) => {
+        this.innerHTML = '';
+        const tileElements = Array.from(new Array(config?.maxDays)).map((_, i) => {
+            const tileElement = document.createElement(ADVENT_CALENDAR_TILE_TAG_NAME) as AdventCalendarTile;
             const dayOfMonth = i + 1;
             const icon = this.randomItem(config.icons);
-            return `
-                <advent-calendar-tile icon="${icon}"  day="${dayOfMonth}"></advent-calendar-tile>
-            `;
+            const event = config.events.get(dayOfMonth);
+            tileElement.icon = icon;
+            tileElement.event = event;
+            tileElement.dayOfMonth = dayOfMonth;
+            return tileElement;
         });
 
-        this.innerHTML = tileTemplates.join(' ');
+        this.append(...tileElements);
     }
 
     private randomItem<T>(list: T[]) {

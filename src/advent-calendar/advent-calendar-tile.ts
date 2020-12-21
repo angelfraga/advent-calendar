@@ -1,66 +1,68 @@
-import { BehaviorSubject, combineLatest, Subject } from "rxjs";
-import { DEFAULT_TILE_ICON } from './models/advent-calendar-config';
+import { fromEvent, Subject } from "rxjs";
+import { filter } from "rxjs/operators";
+import { AdventCalendarTileDay, ADVENT_CALENDAR_TILE_DAY_TAG_NAME } from './advent-calendar-tile-day';
+import { AdventCalendarTileEvent, ADVENT_CALENDAR_TILE_EVENT_TAG_NAME } from "./advent-calendar-tile-event";
+import { AdventCalendarEvent } from './models/advent-calendar-event';
 
 export const ADVENT_CALENDAR_TILE_TAG_NAME = 'advent-calendar-tile';
 export class AdventCalendarTile extends HTMLElement {
 
-    static get observedAttributes() {
-        return ['day', 'icon'];
-    }
+    icon: string;
+    dayOfMonth: number;
+    event: AdventCalendarEvent;
 
-    get icon(): string {
-        return this.getAttribute('icon');
-    }
+    readonly openEvent$ = new Subject();
 
-    day$ = new BehaviorSubject<number>(-1);
-    icon$ = new BehaviorSubject<string>(DEFAULT_TILE_ICON);
-    destroyed$ = new Subject();
+    private tileDayElement = document.createElement(ADVENT_CALENDAR_TILE_DAY_TAG_NAME) as AdventCalendarTileDay;
+    private tileEventElement = document.createElement(ADVENT_CALENDAR_TILE_EVENT_TAG_NAME) as AdventCalendarTileEvent;
 
     constructor() {
         super();
-        combineLatest([
-            this.day$,
-            this.icon$
-        ]).subscribe(([day, icon]) => {
-            this.render(day, icon);
-        });
+        this.openEvent$.subscribe(() => this.openEvent())
     }
 
     connectedCallback() {
-        this.icon$.next(this.icon);
+        fromEvent(this, 'click').subscribe(this.openEvent$);
+        fromEvent(this, 'keyup').pipe(
+            filter((event: KeyboardEvent) => event.key === 'Enter')
+        ).subscribe(this.openEvent$)
+
+        this.render(this.dayOfMonth, this.icon, this.event);
     }
 
-    attributeChangedCallback(attrName: string, oldValue: any, newValue: any) {
-        if (attrName === 'day') {
-            this.day$.next(newValue);
-        }
-    }
-
-    private render(dayOfMonth: number, icon: string) {
+    private render(dayOfMonth: number, icon: string, event: AdventCalendarEvent) {
         if (this.isDayInTheFuture(dayOfMonth)) {
+            this.tabIndex = -1;
             this.renderLockedTile(dayOfMonth);
         } else {
-            this.renderOpenedTile(dayOfMonth, icon);
+            this.tabIndex = 0;
+            this.renderOpenedTile(dayOfMonth, icon, event);
         }
     }
 
-    private renderOpenedTile(dayOfMonth: number, icon: string) {
+    private renderOpenedTile(dayOfMonth: number, icon: string, event: AdventCalendarEvent) {
         this.innerHTML = `
-        <advent-calendar-tile-day day="${dayOfMonth}"></advent-calendar-tile-day>
         <div class="icon">
-         <i class="${icon}"></i>
+            <i class="${icon}"></i>
         </div>
-        <!--  Here will be the advent-calendar-event  -->
         `;
+        this.tileDayElement.day = dayOfMonth;
+        this.prepend(this.tileDayElement);
+        this.tileEventElement.event = event;
+        this.append(this.tileEventElement);
     }
 
     private renderLockedTile(dayOfMonth: number) {
+        this.innerHTML = ``;
+        this.tileDayElement.day = dayOfMonth;
+
         this.innerHTML = `
-        <advent-calendar-tile-day day="${dayOfMonth}"></advent-calendar-tile-day>
         <div class="icon">
          <i class="fas fa-lock"></i>
         </div>
         `;
+
+        this.prepend(this.tileDayElement);
     }
 
     private isDayInTheFuture(dayOfMonth: number): boolean {
@@ -71,4 +73,9 @@ export class AdventCalendarTile extends HTMLElement {
         return today.getTime() < tileDate.getTime();
     }
 
+    private openEvent() {
+        if (this.tileEventElement) {
+            this.tileEventElement.focus();
+        }
+    }
 }

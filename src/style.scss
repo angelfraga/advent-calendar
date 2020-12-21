@@ -26,3 +26,60 @@ body {
     height: 100%;
     width: 100%;
 }
+
+/**
+*  Scrollbar
+**/
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: rgba($text-accent, 0.8);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba($text-accent, 0.4);
+}
+
+/**
+* Icons coloring customization
+**/
+
+.fa-sleigh {
+    color: #904900;
+}
+.fa-gifts {
+    color: #c3099b;
+}
+.fa-gift {
+    color: #ff253a;
+}
+.fa-holly-berry {
+    color: #067979;
+}
+.fa-candy-cane {
+    color: var(--text-accent);
+}
+.fa-tree {
+    color: green;
+}
+.fa-snowman {
+    color: white;
+}
+.fa-snowflake {
+    color: #69a1bb;
+}
+.fa-lock {
+    color: #ff9900;
+}
