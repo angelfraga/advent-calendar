@@ -20,6 +20,20 @@ advent-calendar-tile {
     box-sizing: border-box;
 }
 
+advent-calendar-tile > .icon {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+advent-calendar-tile > .icon > svg {
+    height: 100%;
+    flex: 1;
+}
+
 advent-calendar-tile-day {
     color: var(--text-accent);
     font-family: var(--font-family), cursive;
