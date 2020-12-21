@@ -5,8 +5,8 @@ advent-calendar {
     background: var(--bg-primary);
     padding: 2rem;
     box-sizing: border-box;
-    height: 100%;
-    overflow: auto;
+    height: auto;
+    min-height: 100%;
 }
 
 advent-calendar-tile {
@@ -18,14 +18,15 @@ advent-calendar-tile {
     align-items: center;
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
+    gap: 1em;
 }
 
 advent-calendar-tile > .icon {
     display: flex;
     height: 100%;
+    min-width: 50%;
     flex: 1;
     align-items: center;
-    padding: 2rem;
     box-sizing: border-box;
 }
 
@@ -40,3 +41,56 @@ advent-calendar-tile-day {
     font-size: 2rem;
 }
 
+.advent-calendar-tile-event-header {
+    font-family: var(--font-family), cursive;
+}
+
+advent-calendar-tile-event {
+    width: 0px;
+    height: 0px;
+    overflow: auto;
+}
+advent-calendar-tile-event:focus,
+advent-calendar-tile-event:focus-within {
+    display: inline;
+    top: 10vh;
+    left: 10vw;
+    position: fixed;
+    width: 80vw;
+    height: 80vh;
+    background: var(--secondary);
+    z-index: 1;
+    outline-offset: 1px;
+    box-sizing: border-box;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    box-shadow: -1px 7px 19px 4px rgba(0, 0, 0, 0.29);
+    .advent-calendar-tile-event-header {
+        color: var(--text-accent);
+        font-size: 2rem;
+    }
+}
+
+advent-calendar-tile-event pre {
+    white-space: pre-line;
+}
+
+/**
+*   small screens
+**/
+@media only screen and (max-width: 768px) {
+    :root {
+        --font-size: 32px;
+    }
+    advent-calendar {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    advent-calendar-tile {
+        flex-direction: column;
+        height: calc(100vw - 4rem);
+    }
+    .advent-calendar-tile > .icon {
+        height: auto;
+        width: calc(100% - 3rem);
+    }
+}
