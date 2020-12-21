@@ -1,0 +1,42 @@
+advent-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 1rem;
+    background: var(--bg-primary);
+    padding: 2rem;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+}
+
+advent-calendar-tile {
+    background: var(--bg-secondary);
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+advent-calendar-tile > .icon {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+advent-calendar-tile > .icon > svg {
+    height: 100%;
+    flex: 1;
+}
+
+advent-calendar-tile-day {
+    color: var(--text-accent);
+    font-family: var(--font-family), cursive;
+    font-size: 2rem;
+}
+

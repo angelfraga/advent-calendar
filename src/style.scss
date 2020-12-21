@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap");
+@import "./advent-calendar/advent-calendar.scss";
+
+$text-primary: #000;
+$text-accent: #cf432a;
+$bg-primary: #226f61;
+$bg-secondary: #ecdeb9;
+$font-family: "Mountains of Christmas";
+$font-size: 16px;
+
+:root {
+    --text-primary: #{$text-primary};
+    --text-accent: #{$text-accent};
+    --bg-primary: #{$bg-primary};
+    --bg-secondary: #{$bg-secondary};
+    --font-family: #{$font-family};
+    --font-size: #{$font-size};
+    font-size: var(--font-size);
+}
+
+// reset
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
