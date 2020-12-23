@@ -19,7 +19,15 @@ EVENTS.set(1, {
 
 EVENTS.set(2, {
     title: 'Using angular material theme generator',
-    description: '',
+    description: 'Web-Based Material Theme Generator for @angular/material',
+    iframe: {
+        style: "width: 100%; height: 80% ",
+        width: 560,
+        height: 315,
+        src: 'https://materialtheme.arcsine.dev/',
+        frameborder: 0,
+        allowfullscreen: true
+    },
     links: [
         'https://materialtheme.arcsine.dev/'
     ]
@@ -66,7 +74,16 @@ EVENTS.set(5, {
 
 EVENTS.set(6, {
     title: 'Fabricjs ',
-    description: ``,
+    description: `
+    Fabric.js allows you to easily create simple shapes like rectangles, circles, triangles and other polygons or more 
+    complex shapes made up of many paths, onto the HTML <canvas> element on a webpage using JavaScript.
+    
+    Fabric.js will then allow you to manipulate the size, position and rotation of these objects with a mouse.
+    It’s also possible to change some of the attributes of these objects such as their color, transparency, depth 
+    position on the webpage or selecting groups of these objects using the Fabric.js library. Fabric.js will also allow 
+    you to convert an SVG image into JavaScript data that can be used for putting it onto the <canvas> element.
+
+    `,
     links: [
         'http://fabricjs.com/'
     ]
@@ -104,6 +121,45 @@ EVENTS.set(8, {
     `,
     links: [
         'https://github.com/manfredsteyer/ngx-build-plus'
+    ]
+});
+
+EVENTS.set(9, {
+    title: 'The Value of Values with Rich Hickey',
+    description: `Awesome talk 💎`,
+    iframe: {
+        style: "margin: auto; display: block; max-width: 100%",
+        width: 560,
+        height: 315,
+        src: 'https://www.youtube.com/embed/-6BsiVyC1kM',
+        frameborder: 0,
+        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen: true
+    },
+    links: [
+        'https://www.youtube.com/watch?v=-6BsiVyC1kMw'
+    ]
+});
+
+
+EVENTS.set(10, {
+    title: 'Face-API.JS',
+    description: `
+        JavaScript API for face detection and face recognition in the browser implemented on top of the tensorflow.js core API
+    `,
+    links: [
+        'https://justadudewhohacks.github.io/face-api.js/docs/index.html'
+    ]
+});
+
+
+EVENTS.set(11, {
+    title: 'How to kubernetes cluster on raspberry pi',
+    description: `
+    Install k8s on PI with Ubuntu server 🛠
+    `,
+    links: [
+        'https://ubuntu.com/tutorials/how-to-kubernetes-cluster-on-raspberry-pi'
     ]
 });
 
