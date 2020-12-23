@@ -52,6 +52,11 @@ export class AdventCalendar extends HTMLElement {
         };
 
         this.append(...dayElements, this.jellySwitch);
+        const today = new Date();
+
+        if (this.isDecember(today)) {
+            this.openDialog(config, today.getDate());
+        }
     }
 
     openDialog(config: AdventCalendarConfig, dayOfMonth: number) {
@@ -104,6 +109,10 @@ export class AdventCalendar extends HTMLElement {
         const isSameMonth = tileDate.getMonth() === today.getMonth();
         const isSameDayOfMonth = dayOfMonth === today.getDate();
         return isSameMonth === isSameDayOfMonth;
+    }
+
+    private isDecember(date: Date) {
+        return date.getMonth() === 11;
     }
 
     private getTileDate(dayOfMonth: number): Date {
