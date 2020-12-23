@@ -40,6 +40,13 @@ EVENTS.set(4, {
 
         But also without extreme JS calculations using an iframe and css marvels.
     `,
+    iframe: {
+        style: "width: 100%;height: 80%",
+        src: 'https://stackblitz.com/edit/angular-aspect-ratio-by-iframe?embed=1&file=src/app/app.component.ts&hideExplorer=1',
+        frameborder: 0,
+        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen: true
+    },
     links: [
         'https://angular-aspect-ratio-by-iframe.stackblitz.io/'
     ]
