@@ -66,3 +66,21 @@ EVENTS.set(6, {
 })
 
 
+EVENTS.set(7, {
+    title: 'NG Conf 2019 Day 3 CDK Is The Coolest Thing You Are Not Using With Jeremy Elbourn',
+    description: ``,
+    iframe: {
+        style: "margin: auto; display: block; max-width: 100%",
+        width: 560,
+        height: 315,
+        src: 'https://www.youtube.com/embed/4EXQKP-Sihw',
+        frameborder: 0,
+        allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen: true
+    },
+    links: [
+        'https://www.youtube.com/watch?v=4EXQKP-Sihw'
+    ]
+});
+
+

@@ -1,9 +1,19 @@
 import { AdventCalendarEvent } from './advent-calendar-event';
-const DAYS_IN_ADVENT_CALENDAR = 24;
-export const DEFAULT_TILE_ICON = 'gitf';
+export const DEFAULT_TILE_ICON = 'fas fa-gitf';
 
 export class AdventCalendarConfig {
+    /**
+     * List of css classes to be used as
+     * icons
+     * @example fas fa-gift
+     */
     icons: string[] = [DEFAULT_TILE_ICON];
-    maxDays: number = DAYS_IN_ADVENT_CALENDAR;
+    /**
+     * icon to be used when is a future day
+     */
+    lockIcon: string;
+    /**
+     * attached notes to be shown in the dialog
+     */
     events: Map<number, AdventCalendarEvent> = new Map()
 }
