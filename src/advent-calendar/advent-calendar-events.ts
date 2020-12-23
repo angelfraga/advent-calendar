@@ -90,4 +90,21 @@ EVENTS.set(7, {
     ]
 });
 
+EVENTS.set(8, {
+    title: 'NGX-BUILD-PLUS 🚀',
+    description: `
+    That tool allows us to exclude certain dependecies from our final bundle
+
+    There excluded dependencies will be treated as external ones which must be provided in the final implementation.
+
+    So we could wrap our "micro" angular app as a web element (custom element) without all the angular dependencies.
+    Then use our "micro" app within another one which already provides these common angular dependecies.
+
+    That reduces a lot the "micro" apps bundle sizes in an angular micro-front-end world.
+    `,
+    links: [
+        'https://github.com/manfredsteyer/ngx-build-plus'
+    ]
+});
+
 

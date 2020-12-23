@@ -85,8 +85,8 @@ advent-calendar-dialog {
     .advent-calendar-dialog-close {
         cursor: pointer;
         position: absolute;
-        top: 1em;
-        right: 1em;
+        top: 1rem;
+        right: 1rem;
     }
 
     .advent-calendar-dialog-header {
@@ -98,7 +98,14 @@ advent-calendar-dialog {
 
     pre {
         word-break: break-word;
-        white-space: break-spaces;
+        white-space: pre-line;
+        background: antiquewhite;
+        padding: 1rem;
+    }
+
+    a {
+        font-family: var(--font-family);
+        color: var(--bg-primary);
     }
 }
 
