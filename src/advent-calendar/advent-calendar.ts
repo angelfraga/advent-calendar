@@ -6,6 +6,7 @@ import { AdventCalendarConfig } from "./models/advent-calendar-config";
 export const ADVENT_CALENDAR_CONFIG_TOKEN = 'ADVENT_CALENDAR_CONFIG_TOKEN';
 export const ADVENT_CALENDAR_TAG_NAME = 'advent-calendar';
 const DAYS_IN_ADVENT_CALENDAR = 24;
+const JS_DECEMBER_MONTH_INDEX = 11;
 export class AdventCalendar extends HTMLElement {
 
     static setConfig(config: AdventCalendarConfig) {
@@ -112,12 +113,12 @@ export class AdventCalendar extends HTMLElement {
     }
 
     private isDecember(date: Date) {
-        return date.getMonth() === 11;
+        return date.getMonth() === JS_DECEMBER_MONTH_INDEX;
     }
 
     private getTileDate(dayOfMonth: number): Date {
         const tileDate = new Date();
-        tileDate.setMonth(11);
+        tileDate.setMonth(JS_DECEMBER_MONTH_INDEX);
         tileDate.setDate(dayOfMonth);
         return tileDate;
     }
