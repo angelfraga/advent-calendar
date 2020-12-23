@@ -64,6 +64,7 @@ export class AdventCalendar extends HTMLElement {
             }
 
             this.append(dialog);
+            dialog.animate([{ opacity: 0 }, { opacity: 1 }], 500);
         }
     }
 

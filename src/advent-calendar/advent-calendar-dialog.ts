@@ -17,7 +17,8 @@ export class AdventCalendarDialog extends HTMLElement {
     connectedCallback() {
         this.closeIconEl.onclick = (event: MouseEvent) => {
             event.stopPropagation();
-            this.onclosed();
+            const animation = this.animate([{ opacity: 1 }, { opacity: 0 }], 500);
+            animation.onfinish = () => this.onclosed();
         }
 
         this.render();
