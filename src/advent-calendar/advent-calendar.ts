@@ -37,15 +37,18 @@ export class AdventCalendar extends HTMLElement {
         const dayElements = Array.from(new Array(DAYS_IN_ADVENT_CALENDAR)).map((_, i) => {
             const tileElement = document.createElement(ADVENT_CALENDAR_DAY_TAG_NAME) as AdventCalendarDay;
             const dayOfMonth = i + 1;
+            const dayClass = this.getDayClass(dayOfMonth);
             tileElement.icon = this.getIcon(config, dayOfMonth);
             tileElement.dayOfMonth = dayOfMonth;
             tileElement.onclick = () => this.openDialog(config, dayOfMonth);
+            tileElement.classList.add(dayClass);
             return tileElement;
         });
 
         this.jellySwitch.checked = this.stricted;
         this.jellySwitch.ontoggle = () => {
             this.stricted = !this.stricted
+            this.classList.toggle('non-stricted');
         };
 
         this.append(...dayElements, this.jellySwitch);
@@ -76,12 +79,38 @@ export class AdventCalendar extends HTMLElement {
         }
     }
 
+    private getDayClass(dayOfMonth: number): string {
+
+        if (this.isToday(dayOfMonth)) {
+            return 'today';
+        }
+
+        if (this.isDayInTheFuture(dayOfMonth)) {
+            return 'future';
+        }
+
+        return 'over';
+    }
+
     private isDayInTheFuture(dayOfMonth: number): boolean {
         const today = new Date();
-        const tileDate = new Date();
-        tileDate.setDate(dayOfMonth);
-
+        const tileDate = this.getTileDate(dayOfMonth);
         return today.getTime() < tileDate.getTime();
+    }
+
+    private isToday(dayOfMonth: number) {
+        const today = new Date();
+        const tileDate = this.getTileDate(dayOfMonth);
+        const isSameMonth = tileDate.getMonth() === today.getMonth();
+        const isSameDayOfMonth = dayOfMonth === today.getDate();
+        return isSameMonth === isSameDayOfMonth;
+    }
+
+    private getTileDate(dayOfMonth: number): Date {
+        const tileDate = new Date();
+        tileDate.setMonth(11);
+        tileDate.setDate(dayOfMonth);
+        return tileDate;
     }
 
     private randomItem<T>(list: T[]) {

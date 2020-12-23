@@ -7,6 +7,11 @@ advent-calendar {
     box-sizing: border-box;
     height: auto;
     min-height: 100%;
+    &.non-stricted {
+        advent-calendar-day.future {
+            filter: grayscale(0);
+        }
+    }
 }
 
 advent-calendar-day {
@@ -20,6 +25,20 @@ advent-calendar-day {
     box-sizing: border-box;
     gap: 1em;
     cursor: pointer;
+
+    &.over {
+        filter: opacity(0.8);
+        &:hover {
+            filter: opacity(1);
+        }
+    }
+    &.today {
+        border: 5px solid var(--text-accent);
+    }
+    &.future {
+        filter: grayscale(1);
+    }
+
     .advent-calendar-day-header {
         color: var(--text-accent);
         font-family: var(--font-family), cursive;
