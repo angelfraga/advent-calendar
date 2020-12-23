@@ -15,6 +15,12 @@ export class AdventCalendar extends HTMLElement {
         return (window as any)[ADVENT_CALENDAR_CONFIG_TOKEN];
     }
 
+    /**
+     * NOTE: ts definitions missed
+     */
+    private jellySwitch = document.createElement('jelly-switch') as HTMLElement & { checked: boolean, ontoggle: () => void };
+    private stricted = true;
+
     constructor() {
         super();
         if (!AdventCalendar.config) {
@@ -37,11 +43,16 @@ export class AdventCalendar extends HTMLElement {
             return tileElement;
         });
 
-        this.append(...dayElements);
+        this.jellySwitch.checked = this.stricted;
+        this.jellySwitch.ontoggle = () => {
+            this.stricted = !this.stricted
+        };
+
+        this.append(...dayElements, this.jellySwitch);
     }
 
     openDialog(config: AdventCalendarConfig, dayOfMonth: number) {
-        const shouldBeOpened = !this.isDayInTheFuture(dayOfMonth);
+        const shouldBeOpened = !this.isDayInTheFuture(dayOfMonth) || !this.stricted;
         if (shouldBeOpened) {
             let dialog = document.createElement(ADVENT_CALENDAR_DIALOG_EVENT_TAG_NAME) as AdventCalendarDialog;
             const event = config.events.get(dayOfMonth);
